@@ -19,6 +19,7 @@ public class Building : MonoBehaviour {
 
     public GameObject wood_harvester;
     public GameObject wood_harvester_placer;
+    bool wood_harvest_first = true;
 
     string building;
     string rot_building = "north";
@@ -26,7 +27,7 @@ public class Building : MonoBehaviour {
 
     bool drawing_road = false;
     bool drawing = false;
-    bool drawing_first = true;
+    bool road_first = true;
     bool collide = false;
 
     float x_dif;
@@ -64,9 +65,7 @@ public class Building : MonoBehaviour {
         else if (Input.GetKeyDown("h") == true && building == "house"){
             building = "nothing";}
         else if (Input.GetKeyDown("k") == true && building != "wood_harvest"){
-            building = "wood_harvest";
-            print("ok");
-        }
+            building = "wood_harvest";}
         else if (Input.GetKeyDown("k") == true && building == "wood_harvest"){
             building = "nothing";}
 
@@ -81,7 +80,7 @@ public class Building : MonoBehaviour {
             if (Input.GetMouseButtonDown(1) && drawing_road == true){
                 drawing_road = false;
                 drawing = false;
-                drawing_first = true;}
+                road_first = true;}
 
 
             if (drawing_road == false){
@@ -105,14 +104,14 @@ public class Building : MonoBehaviour {
                 else if (x_dif <= 0 && z_dif >= 0){
                     dir = "northwest";}
 
-                if(drawing_first == true){
+                if(road_first == true){
                     Instantiate(road_temp_object, pos_click, rot_zero, road_placer.transform);}
 
                 if (Input.GetMouseButtonDown(0) && drawing == true && collide == false)
                 {
-                    if(drawing_first == true){
+                    if(road_first == true){
                         Instantiate(road_perm_object, new Vector3(pos_click[0], 0, pos_click[2]), rot_zero, road_perm_placer.transform);
-                        drawing_first = false;}
+                        road_first = false;}
 
                     if (dir == "northeast"){
                         for (int i = 1; i <= z_dif; i++){
@@ -172,7 +171,7 @@ public class Building : MonoBehaviour {
         else if(building != "road"){
             drawing_road = false;
             drawing = false;
-            drawing_first = true;
+            road_first = true;
             Destroy(road_placer);}
 
 
@@ -215,17 +214,41 @@ public class Building : MonoBehaviour {
             Destroy(house_placer);
         }
 
-        if(building == "wood_harvest")
+
+        if (building == "wood_harvest")
         {
+            if (wood_harvest_first == true)
+            {
+                pos_click = pos_mouse;
+            }
+
+            if (Input.GetMouseButtonDown(0) && wood_harvest_first == false)
+            {
+                pos_click = pos_mouse;
+            }
+
+            if (Input.GetMouseButtonDown(0) && wood_harvest_first == true)
+            {
+                wood_harvest_first = false;
+                pos_click = pos_mouse;
+            }
+
+            if (Input.GetMouseButtonDown(1) && wood_harvest_first == false)
+            {
+                wood_harvest_first = true;
+            }
+
             Destroy(wood_harvester_placer);
-            wood_harvester_placer = Instantiate(wood_harvester, new Vector3((pos_click[0] + pos_mouse[0]) / 2, 0.5f, (pos_click[2] + pos_mouse[2]) / 2),rot_zero);
+            wood_harvester_placer = Instantiate(wood_harvester, new Vector3((pos_click[0] + pos_mouse[0]) / 2, 0.5f, (pos_click[2] + pos_mouse[2]) / 2), rot_zero);
+            wood_harvester_placer.transform.localScale = new Vector3(Mathf.Abs(pos_click[0] - pos_mouse[0]) + 1, 0.3f, Mathf.Abs(pos_click[2] - pos_mouse[2]) + 1);
         }
-        else if(building != "wood_harvest")
-        {  
-            if(wood_harvester_placer != null)
+        else if (building != "wood_harvest")
+        {
+            if (wood_harvester_placer != null)
             {
                 Destroy(wood_harvester_placer);
             }
+            wood_harvest_first = true;
         }
     }
     
