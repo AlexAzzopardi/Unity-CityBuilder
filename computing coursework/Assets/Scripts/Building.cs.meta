@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 2b00f15994f6a7e4dae05e66a552b6af
-timeCreated: 1504026607
+timeCreated: 1505901072
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - road_temp_object: {instanceID: 0}
+  - road_perm_object: {instanceID: 0}
+  - road_temp_placer: {instanceID: 0}
+  - road_perm_placer: {instanceID: 0}
+  - house_temp_object: {instanceID: 0}
+  - house_perm_object: {instanceID: 0}
+  - wood_harvester: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
