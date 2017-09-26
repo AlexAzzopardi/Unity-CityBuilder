@@ -13,6 +13,10 @@ public class Collision_detect : MonoBehaviour {
         {
             Camera.main.SendMessage("collide_detecting", true);
         }
+        else if (other.gameObject.tag == "Tree" && Input.GetMouseButtonDown(0))
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     void FixedUpdate()

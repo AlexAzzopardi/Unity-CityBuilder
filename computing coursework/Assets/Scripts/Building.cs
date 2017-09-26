@@ -18,8 +18,9 @@ public class Building : MonoBehaviour {
     GameObject house_placer;
 
     public GameObject wood_harvester;
+    public GameObject wood_harvester_collider;
     public GameObject wood_harvester_placer;
-    bool wood_harvest_first = true;
+    bool wood_harvesting = true;
 
     string building;
     string rot_building = "north";
@@ -36,8 +37,8 @@ public class Building : MonoBehaviour {
     Vector3 pos_zero = new Vector3(0, 0, 0);
     Quaternion rot_zero = Quaternion.Euler(0, 0, 0);
     Quaternion rot_quarter = Quaternion.Euler(0, 90, 0);
+    Quaternion rot_half = Quaternion.Euler(0, 90, 0);
     Quaternion building_rotation = Quaternion.Euler(0, 0, 0);
-
 
 
     void Start()
@@ -54,7 +55,13 @@ public class Building : MonoBehaviour {
 
 
     void Update()
-    {        
+    {
+        print(collide);
+        if (Input.GetKeyDown("r") == true)
+        {
+            rot_zero = Quaternion.Euler(0, rot_zero[2] + 90, 0);
+        }
+
         pos_mouse = get_world_point();
         if (Input.GetKeyDown("j") == true && building != "road"){
             building = "road";}
@@ -179,10 +186,10 @@ public class Building : MonoBehaviour {
         if(building == "house")
         {
             Destroy(house_placer);
-            house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0], pos_mouse[1], pos_mouse[2]), building_rotation);
+            house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0], 1, pos_mouse[2]), building_rotation);
             if (Input.GetMouseButtonDown(0) && collide == false)
             {
-                Instantiate(house_perm_object, new Vector3(pos_mouse[0] + 0.5f, pos_mouse[1] + 1, pos_mouse[2] + 0.5f), building_rotation);
+                Instantiate(house_perm_object, new Vector3(pos_mouse[0], 1, pos_mouse[2]), building_rotation);
             }
 
             if (Input.GetKeyDown("r"))
@@ -214,32 +221,32 @@ public class Building : MonoBehaviour {
             Destroy(house_placer);
         }
 
-
         if (building == "wood_harvest")
         {
-            if (wood_harvest_first == true)
+            if (wood_harvesting == true)
             {
                 pos_click = pos_mouse;
             }
 
-            if (Input.GetMouseButtonDown(0) && wood_harvest_first == false)
+            if (Input.GetMouseButtonDown(0) && wood_harvesting == false)
             {
+                wood_harvesting = true;
                 pos_click = pos_mouse;
             }
 
-            if (Input.GetMouseButtonDown(0) && wood_harvest_first == true)
+            else if (Input.GetMouseButtonDown(0) && wood_harvesting == true)
             {
-                wood_harvest_first = false;
+                wood_harvesting = false;
                 pos_click = pos_mouse;
             }
 
-            if (Input.GetMouseButtonDown(1) && wood_harvest_first == false)
+            if (Input.GetMouseButtonDown(1) && wood_harvesting == false)
             {
-                wood_harvest_first = true;
+                wood_harvesting = true;
             }
 
             Destroy(wood_harvester_placer);
-            wood_harvester_placer = Instantiate(wood_harvester, new Vector3((pos_click[0] + pos_mouse[0]) / 2, 0.5f, (pos_click[2] + pos_mouse[2]) / 2), rot_zero);
+            wood_harvester_placer = Instantiate(wood_harvester, new Vector3((pos_click[0] + pos_mouse[0]) / 2, 0.25f, (pos_click[2] + pos_mouse[2]) / 2), rot_zero);
             wood_harvester_placer.transform.localScale = new Vector3(Mathf.Abs(pos_click[0] - pos_mouse[0]) + 1, 0.3f, Mathf.Abs(pos_click[2] - pos_mouse[2]) + 1);
         }
         else if (building != "wood_harvest")
@@ -248,7 +255,7 @@ public class Building : MonoBehaviour {
             {
                 Destroy(wood_harvester_placer);
             }
-            wood_harvest_first = true;
+            wood_harvesting = true;
         }
     }
     
