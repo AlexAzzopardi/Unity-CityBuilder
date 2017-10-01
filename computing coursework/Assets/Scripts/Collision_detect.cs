@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision_detect : MonoBehaviour {
+public class Collision_detect : MonoBehaviour
+{
 
     Collider collision;
 
@@ -12,6 +13,10 @@ public class Collision_detect : MonoBehaviour {
         if (other.gameObject.tag == "road_perm" || other.gameObject.tag == "House")
         {
             Camera.main.SendMessage("collide_detecting", true);
+        }
+        else if (other.gameObject.tag == "Tree" && Input.GetMouseButtonDown(0))
+        {
+            Destroy(other.gameObject);
         }
     }
 

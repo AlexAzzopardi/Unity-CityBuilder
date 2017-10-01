@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65351265628534088}
   - component: {fileID: 23600056060056872}
   - component: {fileID: 54921924848997976}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: house_perm
   m_TagString: House
   m_Icon: {fileID: 0}
@@ -73,7 +73,6 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33899982140471520
 MeshFilter:

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - road_perm
   - House
+  - Tree
   layers:
   - Default
   - TransparentFX
