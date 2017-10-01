@@ -18,7 +18,6 @@ public class Building : MonoBehaviour {
     GameObject house_placer;
 
     public GameObject wood_harvester;
-    public GameObject wood_harvester_collider;
     public GameObject wood_harvester_placer;
     bool wood_harvesting = true;
 
@@ -56,12 +55,6 @@ public class Building : MonoBehaviour {
 
     void Update()
     {
-        print(collide);
-        if (Input.GetKeyDown("r") == true)
-        {
-            rot_zero = Quaternion.Euler(0, rot_zero[2] + 90, 0);
-        }
-
         pos_mouse = get_world_point();
         if (Input.GetKeyDown("j") == true && building != "road"){
             building = "road";}
@@ -186,10 +179,10 @@ public class Building : MonoBehaviour {
         if(building == "house")
         {
             Destroy(house_placer);
-            house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0], 1, pos_mouse[2]), building_rotation);
+            house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0] + 0.5f, 0.8f, pos_mouse[2] + 0.5f), building_rotation);
             if (Input.GetMouseButtonDown(0) && collide == false)
             {
-                Instantiate(house_perm_object, new Vector3(pos_mouse[0], 1, pos_mouse[2]), building_rotation);
+                Instantiate(house_perm_object, new Vector3(pos_mouse[0] + 0.5f, 0.8f, pos_mouse[2] + 0.5f), building_rotation);
             }
 
             if (Input.GetKeyDown("r"))

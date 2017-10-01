@@ -207,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &42364937
 Transform:
   m_ObjectHideFlags: 0
@@ -3163,13 +3163,12 @@ MonoBehaviour:
     type: 2}
   road_perm_placer: {fileID: 1108136613050342, guid: 963622bd85ad20544ac23769b22cee43,
     type: 2}
-  house_temp_object: {fileID: 1464012323716634, guid: bc764e092ebe4ed43bff64a713b52dd4,
+  house_temp_object: {fileID: 1233648996594638, guid: 22ceeb052ed6ecb4bb4ecf2de6f3d24f,
     type: 2}
-  house_perm_object: {fileID: 1233648996594638, guid: 22ceeb052ed6ecb4bb4ecf2de6f3d24f,
+  house_perm_object: {fileID: 1464012323716634, guid: bc764e092ebe4ed43bff64a713b52dd4,
     type: 2}
   wood_harvester: {fileID: 1701246553079310, guid: 51666f0648132184bb2da101bbe45851,
     type: 2}
-  wood_harvester_collider: {fileID: 0}
   wood_harvester_placer: {fileID: 0}
 --- !u!81 &299337610
 AudioListener:
