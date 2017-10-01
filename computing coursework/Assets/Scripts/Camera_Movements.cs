@@ -16,6 +16,7 @@ public class Camera_Movements : MonoBehaviour {
 
     void FixedUpdate()
     {
+        
         if (Input.GetKey("q") == true)
         {
             transform.Rotate(Vector3.up, turn_Speed * Time.deltaTime);

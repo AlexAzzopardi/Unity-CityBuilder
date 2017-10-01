@@ -253,10 +253,17 @@ public class Building : MonoBehaviour
         if (building == "house")
         {
             Destroy(house_placer);
+<<<<<<< HEAD
             house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0] + 0.5f, 0.59f, pos_mouse[2] + 0.5f), building_rotation);
             if (Input.GetMouseButtonDown(0) && collide == false)
             {
                 Instantiate(house_perm_object, new Vector3(pos_mouse[0] + 0.5f,0.59f, pos_mouse[2] + 0.5f), building_rotation);
+=======
+            house_placer = Instantiate(house_temp_object, new Vector3(pos_mouse[0] + 0.5f, 0.8f, pos_mouse[2] + 0.5f), building_rotation);
+            if (Input.GetMouseButtonDown(0) && collide == false)
+            {
+                Instantiate(house_perm_object, new Vector3(pos_mouse[0] + 0.5f, 0.8f, pos_mouse[2] + 0.5f), building_rotation);
+>>>>>>> 74918ef8aa9e8421ea05e26a4be509be5bb61d5a
             }
 
             if (Input.GetKeyDown("r"))
